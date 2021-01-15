@@ -1,0 +1,24 @@
+{
+    "aimlock": true,
+    "bhop": true,
+    "glow": true,
+    "noflash": true,
+    "radar": true,
+    "trigger": true,
+    "trigger_key": "shift",
+    "bunny_key": "space",
+    "aim_key": "ctrl",
+    "aim_fov": 10,
+    "ct_colors": {
+        "red": 0.0, 
+        "green": 0.0, 
+        "blue": 2.0, 
+        "opacity": 2.0
+    },
+    "t_colors": {
+        "red": 2.0,
+        "green": 0.0, 
+        "blue": 0.0, 
+        "opacity": 2.0
+    }
+}
