@@ -1,12 +1,28 @@
-import requests
 import sys
-from utils.config import version, latestKey, currentHash
+import requests
+from datetime import datetime
+from utils.config import version, latestKey, currentHash, endDate
 from utils.offsets import *
 
 
-def check():
+def checkIfValid():
+    now = datetime.now().timestamp()
+    remaining = endDate - now
+    return remaining > 0
+
+
+def checkLicense():
+    print("Checking license...")
+    isValid = checkIfValid()
+    if not isValid:
+        print("Your license is expired. Please upgrade your license.")
+        input("Press Enter to exit.")
+        sys.exit()
+    print("Your license is still valid!")
+
+
+def checkUpdates():
     print("Checking updates...")
-    print(f"Current Hash: {currentHash}")
     data = requests.get("https://api.bariscodes.me/offsets").json()
     if (
         data["version"] != version
@@ -34,6 +50,13 @@ def check():
         print(
             f"Version v{latestVersion} is available. Please download the newest version."
         )
-        input("Press Enter to continue.")
+        input("Press Enter to exit.")
         sys.exit()
     print("Everything is up to date!")
+
+
+def check():
+    print(f"Current Hash: {currentHash}")
+    checkUpdates()
+    checkLicense()
+    print("Everything is okay, have fun!")

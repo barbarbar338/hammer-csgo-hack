@@ -1,8 +1,10 @@
 import json
+from datetime import datetime
 
-version = "1.0.0"
-latestKey = "flying-squid"
-currentHash = "8589834b86c10cbd4642671e4b673148:2085516e5ec3449efcbcae02"
+version = "1.1.0"
+latestKey = "tasty-jellyfish"
+currentHash = "f76d956963b5f01f80a5545791de8378:d3d0b26d6480cd18f2bfe01626c9ba"
+endDate = datetime(2021, 1, 15, 15, 30).timestamp()
 
 with open("config.json") as file:
     config = json.load(file)

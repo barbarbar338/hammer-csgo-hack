@@ -1,6 +1,7 @@
+import sys
 import utils.config as config
 from utils.banner import printBanner
-from utils.check import check
+from utils.check import check, checkIfValid
 from packages.aim import aim
 from packages.bunny import bunny
 from packages.glow import glow
@@ -13,6 +14,11 @@ def main():
     check()
     printBanner()
     while True:
+        isValid = checkIfValid()
+        if not isValid:
+            print("Your license is expired. Please upgrade your license.")
+            input("Press Enter to exit.")
+            sys.exit()
         if config.aimlock:
             aim()
         if config.bhop:
