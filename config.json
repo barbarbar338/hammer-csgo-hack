@@ -5,6 +5,8 @@
     "noflash": true,
     "radar": true,
     "trigger": true,
+    "recoil": false,
+    "default_fov": 120,
     "trigger_key": "shift",
     "bunny_key": "space",
     "aim_key": "ctrl",

@@ -10,6 +10,8 @@ You can download executable from [here](https://github.com/barbarbar338/hammer-c
 - ✨ No Flash
 - 🗺️ Radar Positions
 - 🔫 Trigger Bot
+- 🥽 FOV
+- 🐱‍👤 Anti Recoil
 
 # 🎈 Starting Hacks
 - Edit `config.json` (The settings it contains are recommended settings.)

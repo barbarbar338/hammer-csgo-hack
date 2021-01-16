@@ -8,6 +8,8 @@ from packages.glow import glow
 from packages.noflash import noflash
 from packages.radar import radar
 from packages.trigger import trigger
+from packages.fov import fov
+from packages.recoil import recoil
 
 
 def main():
@@ -31,6 +33,9 @@ def main():
             radar()
         if config.trigger:
             trigger()
+        if config.recoil:
+            recoil()
+        fov()
 
 
 if __name__ == "__main__":

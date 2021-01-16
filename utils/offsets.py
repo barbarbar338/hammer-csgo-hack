@@ -1,11 +1,14 @@
+m_aimPunchAngle = 0x302C
 m_bDormant = 0xED
 m_bSpotted = 0x93D
 m_dwBoneMatrix = 0x26A8
 m_fFlags = 0x104
 m_flFlashMaxAlpha = 0xA41C
+m_iFOV = 0x31E4
 m_iCrosshairId = 0xB3E4
 m_iGlowIndex = 0xA438
 m_iHealth = 0x100
+m_iShotsFired = 0xA390
 m_iTeamNum = 0xF4
 m_vecOrigin = 0x138
 m_vecViewOffset = 0x108
