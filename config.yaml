@@ -1,0 +1,35 @@
+#   Hamer CS:GO Hacks configuration instructions:
+#
+#   - To enable a cheat, simply write true next to it (i.e: glow: true)
+#   - To disable a cheat, simply write false next to it (i.e: glow: false)
+#   - To change a key, simply write key name next to it (i.e: aim_key: f6)
+#
+#   The configurations currently written in this file are recommended. You can make changes according to your request.
+
+aimlock: true # turns on aimlock
+aim_key: ctrl # aimlock key 
+aim_fov: 10 # aimlock fov (recommended: 10) 
+
+bhop: true # turns on bunny hop
+bunny_key: space # bunny hop key
+
+glow: true # turns on glow hack
+ct_colors: # glow hack ct colors
+    red: 0.0
+    green: 0.0
+    blue: 2.0 # ct color is blue (recommended)
+    opacity: 2.0
+t_colors: # glow hack t colors
+    red: 2.0 # t color is red (recommended)
+    green: 0.0
+    blue: 0.0 
+    opacity: 2.0
+
+default_fov: 120 # default fov (recommended: 120, default: 90)
+noflash: true # disables flash bombs
+radar: true # shows enemies in radar
+
+trigger: true # turns on trigger bot 
+trigger_key: shift # trigger bot key
+
+recoil: false # experimental, please don't use this for now 

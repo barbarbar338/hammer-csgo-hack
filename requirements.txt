@@ -1,5 +1,6 @@
 keyboard
-tabulate
-requests
-pymem
 pyinstaller
+pymem
+pyyaml
+requests
+tabulate
