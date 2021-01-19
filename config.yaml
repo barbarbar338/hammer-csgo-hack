@@ -28,12 +28,12 @@ t_glow: # glow hack t colors
 charm: true # turns on charm hack
 ct_charm: # charm hack ct colors
     red: 0
-    green: 51
-    blue: 255 # ct color is blue (recommended)
+    green: 255 # ct color is green (recommended)
+    blue: 30
 t_charm: # charm hack t colors
-    red: 255 # t color is red (recommended)
-    green: 51
-    blue: 0
+    red: 0
+    green: 255 # t color is green (recommended)
+    blue: 30
 
 fov: true # turns on fov hack
 default_fov: 120 # default fov (recommended: 120, default: 90)
