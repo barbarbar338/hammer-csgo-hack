@@ -14,3 +14,4 @@ def trigger():
             player_team = csgo.read_int(player + m_iTeamNum)
             if entity_id > 0 and entity_id <= 64 and player_team != entity_team:
                 csgo.write_int(client_dll + dwForceAttack, 6)
+                time.sleep(0.010)
