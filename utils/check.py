@@ -27,6 +27,7 @@ def checkUpdates():
     if (
         data["version"] != version
         or data["latestKey"] != latestKey
+
         or m_bDormant != data["offsets"]["m_bDormant"]
         or m_bSpotted != data["offsets"]["m_bSpotted"]
         or m_dwBoneMatrix != data["offsets"]["m_dwBoneMatrix"]
@@ -45,6 +46,11 @@ def checkUpdates():
         or dwForceJump != data["offsets"]["dwForceJump"]
         or dwGlowObjectManager != data["offsets"]["dwGlowObjectManager"]
         or dwLocalPlayer != data["offsets"]["dwLocalPlayer"]
+        or m_iFOVStart != data["offsets"]["m_iFOVStart"]
+        or m_iShotsFired != data["offsets"]["m_iShotsFired"]
+        or m_aimPunchAngle != data["offsets"]["m_aimPunchAngle"]
+        or model_ambient_min != data["offsets"]["model_ambient_min"]
+        or m_clrRender != data["offsets"]["m_clrRender"]
     ):
         latestVersion = data["version"]
         print(
