@@ -10,6 +10,7 @@ from packages.radar import radar
 from packages.trigger import trigger
 from packages.fov import fov
 from packages.recoil import recoil
+from packages.charm import charm
 
 
 def main():
@@ -35,7 +36,10 @@ def main():
             trigger()
         if config.recoil:
             recoil()
-        fov()
+        if config.fov:
+            fov()
+        if config.charm:
+            charm()
 
 
 if __name__ == "__main__":

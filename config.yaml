@@ -14,17 +14,28 @@ bhop: true # turns on bunny hop
 bunny_key: space # bunny hop key
 
 glow: true # turns on glow hack
-ct_colors: # glow hack ct colors
+ct_glow: # glow hack ct colors
     red: 0.0
     green: 0.0
     blue: 2.0 # ct color is blue (recommended)
     opacity: 2.0
-t_colors: # glow hack t colors
+t_glow: # glow hack t colors
     red: 2.0 # t color is red (recommended)
     green: 0.0
     blue: 0.0 
     opacity: 2.0
 
+charm: true # turns on charm hack
+ct_charm: # charm hack ct colors
+    red: 0
+    green: 51
+    blue: 255 # ct color is blue (recommended)
+t_charm: # charm hack t colors
+    red: 255 # t color is red (recommended)
+    green: 51
+    blue: 0
+
+fov: true # turns on fov hack
 default_fov: 120 # default fov (recommended: 120, default: 90)
 noflash: true # disables flash bombs
 radar: true # shows enemies in radar
