@@ -48,7 +48,6 @@ def checkUpdates():
         or m_iDefaultFOV != data["offsets"]["m_iDefaultFOV"]
         or m_iShotsFired != data["offsets"]["m_iShotsFired"]
         or m_aimPunchAngle != data["offsets"]["m_aimPunchAngle"]
-        or model_ambient_min != data["offsets"]["model_ambient_min"]
         or m_clrRender != data["offsets"]["m_clrRender"]
     ):
         latestVersion = data["version"]
