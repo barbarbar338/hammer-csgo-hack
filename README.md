@@ -30,4 +30,4 @@ I recommend you to use my builds in the [Releases](https://github.com/barbarbar3
 - Follow starting instructions
 
 # 🧛‍♀️ Contributing
-Feel free to use GitHub's features.
+Feel free to use GitHub's features. (Don't forget to run `python scripts/format.py` before creating a PR)
