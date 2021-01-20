@@ -1,7 +1,7 @@
 import keyboard
 from math import sqrt, asin, atan
 from utils.dll import getPlayer, csgo, client_dll, engine_dll
-from utils.config import aim_fov, aim_key
+from utils.config import aim_fov, aim_key, aim_force_shoot
 from utils.offsets import (
     dwClientState,
     m_iTeamNum,
@@ -12,6 +12,7 @@ from utils.offsets import (
     dwClientState_ViewAngles,
     m_vecOrigin,
     m_vecViewOffset,
+    dwForceAttack,
 )
 
 
@@ -153,3 +154,5 @@ def aim():
                                 engine_dll_pointer + dwClientState_ViewAngles + 0x4,
                                 normalize_y,
                             )
+                            if aim_force_shoot:
+                                csgo.write_int(client_dll + dwForceAttack, 6)
