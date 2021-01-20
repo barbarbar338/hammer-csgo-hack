@@ -13,6 +13,7 @@ You can download executable from [here](https://github.com/barbarbar338/hammer-c
 - 🔫 Trigger Bot
 - 🥽 FOV
 - 🐱‍👤 Anti Recoil
+- 🏆 Rank Revealer
 
 # 🎈 Starting Hacks
 - Edit `config.yaml` (The settings it contains are recommended settings.)
