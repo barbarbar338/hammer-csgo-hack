@@ -6,15 +6,15 @@
 #
 #   The configurations currently written in this file are recommended. You can make changes according to your request.
 
-aimlock: true # turns on aimlock
+aimlock: true # turns on aimlock false for turn off
 aim_key: ctrl # aimlock key 
 aim_fov: 5 # aimlock fov (recommended: 5) 
 aim_force_shoot: true # aimlock force shoot
 
-bhop: true # turns on bunny hop
+bhop: true # turns on bunny hop false for turn off
 bunny_key: space # bunny hop key
 
-glow: true # turns on glow hack
+glow: true # turns on glow hack false for turn off
 ct_glow: # glow hack ct colors
     red: 0.0
     green: 0.0
@@ -26,7 +26,7 @@ t_glow: # glow hack t colors
     blue: 0.0 
     opacity: 2.0
 
-charm: true # turns on charm hack
+charm: true # turns on charm hack false for turn off
 ct_charm: # charm hack ct colors
     red: 0
     green: 255 # ct color is green (recommended)
@@ -36,16 +36,16 @@ t_charm: # charm hack t colors
     green: 255 # t color is green (recommended)
     blue: 30
 
-fov: true # turns on fov hack
+fov: true # turns on fov hack false for turn off
 default_fov: 120 # default fov (recommended: 120, default: 90)
-noflash: true # disables flash bombs
-radar: true # shows enemies in radar
+noflash: true # disables flash bombs false for turn off
+radar: true # shows enemies in radar false for turn off
 
-trigger: true # turns on trigger bot 
+trigger: true # turns on trigger bot false for turn off
 trigger_delay: 0.1 # trigger bot delay
 trigger_key: shift # trigger bot key
 
-recoil: true # turns on recoil helper
+recoil: true # turns on recoil helper false for turn off
 
-rank_checker: true # turns on rank checker
+rank_checker: true # turns on rank checker false for turn off
 rank_checker_key: f6 # rank checker key
