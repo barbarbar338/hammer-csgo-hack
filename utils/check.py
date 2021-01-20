@@ -49,6 +49,9 @@ def checkUpdates():
         or m_iShotsFired != data["offsets"]["m_iShotsFired"]
         or m_aimPunchAngle != data["offsets"]["m_aimPunchAngle"]
         or m_clrRender != data["offsets"]["m_clrRender"]
+        or dwPlayerResource != data["offsets"]["dwPlayerResource"]
+        or dwClientState_PlayerInfo != data["offsets"]["dwClientState_PlayerInfo"]
+        or m_iCompetitiveRanking != data["offsets"]["m_iCompetitiveRanking"]
     ):
         latestVersion = data["version"]
         print(

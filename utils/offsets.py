@@ -21,3 +21,6 @@ m_iShotsFired = 0xA390
 m_aimPunchAngle = 0x302C
 model_ambient_min = 0x59205C
 m_clrRender = 0x70
+dwPlayerResource = 0x31D2730
+dwClientState_PlayerInfo = 0x52C0
+m_iCompetitiveRanking = 0x1A84
