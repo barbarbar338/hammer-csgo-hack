@@ -41,7 +41,7 @@ default_fov: 120 # default fov (recommended: 120, default: 90)
 noflash: true # disables flash bombs false for turn off
 radar: true # shows enemies in radar false for turn off
 
-trigger: true # turns on trigger bot false for turn off
+trigger: true # turns on trigger  bot false for turn off
 trigger_delay: 0.1 # trigger bot delay
 trigger_key: shift # trigger bot key
 
