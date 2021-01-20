@@ -39,8 +39,8 @@ def recoil():
             rcs_y = csgo.read_float(engine_pointer + dwClientState_ViewAngles + 0x4)
             punchx = csgo.read_float(player + m_aimPunchAngle)
             punchy = csgo.read_float(player + m_aimPunchAngle + 0x4)
-            newrcsx = rcs_x - (punchx - oldpunchx) * 1.5
-            newrcsy = rcs_y - (punchy - oldpunchy) * 1.5
+            newrcsx = rcs_x - (punchx - oldpunchx) * 0.02
+            newrcsy = rcs_y - (punchy - oldpunchy) * 0.02
             oldpunchx = punchx
             oldpunchy = punchy
             if nanchecker(newrcsx, newrcsy) and checkangles(newrcsx, newrcsy):
