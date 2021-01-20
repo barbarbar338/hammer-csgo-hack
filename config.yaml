@@ -8,7 +8,8 @@
 
 aimlock: true # turns on aimlock
 aim_key: ctrl # aimlock key 
-aim_fov: 10 # aimlock fov (recommended: 10) 
+aim_fov: 5 # aimlock fov (recommended: 5) 
+aim_force_shoot: true # aimlock force shoot
 
 bhop: true # turns on bunny hop
 bunny_key: space # bunny hop key
@@ -41,6 +42,10 @@ noflash: true # disables flash bombs
 radar: true # shows enemies in radar
 
 trigger: true # turns on trigger bot 
+trigger_delay: 0.1 # trigger bot delay
 trigger_key: shift # trigger bot key
 
-recoil: false # experimental, please don't use this for now 
+recoil: true # turns on recoil helper
+
+rank_checker: true # turns on rank checker
+rank_checker_key: f6 # rank checker key

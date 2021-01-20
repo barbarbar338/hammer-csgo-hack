@@ -11,6 +11,7 @@ from packages.trigger import trigger
 from packages.fov import fov
 from packages.recoil import recoil
 from packages.charm import charm
+from packages.rank import rank
 
 
 def main():
@@ -40,6 +41,8 @@ def main():
             fov()
         if config.charm:
             charm()
+        if config.rank_checker:
+            rank()
 
 
 if __name__ == "__main__":
