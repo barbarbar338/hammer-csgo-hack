@@ -1,6 +1,6 @@
 from utils.dll import csgo, client_dll
-from utils.offsets import dwGlowObjectManager, dwEntityList, m_iTeamNum, m_iGlowIndex
-from utils.config import ct_glow, t_glow
+from utils.offsets import signatures, netvars
+from utils.config import config
 
 
 def wgpm(glow_obj, gindex, colors):
@@ -11,17 +11,17 @@ def wgpm(glow_obj, gindex, colors):
 
 
 def glow():
-    glow_obj = csgo.read_bytes(client_dll + dwGlowObjectManager, 4)
+    glow_obj = csgo.read_bytes(client_dll + signatures["dwGlowObjectManager"], 4)
     glow_obj = int.from_bytes(glow_obj, byteorder="little")
     for i in range(64):
-        entity = csgo.read_bytes(client_dll + dwEntityList + i * 0x10, 4)
+        entity = csgo.read_bytes(client_dll + signatures["dwEntityList"] + i * 0x10, 4)
         entity = int.from_bytes(entity, byteorder="little")
         if entity != 0:
-            team = csgo.read_int(entity + m_iTeamNum)
-            gindex = csgo.read_int(entity + m_iGlowIndex)
+            team = csgo.read_int(entity + netvars["m_iTeamNum"])
+            gindex = csgo.read_int(entity + netvars["m_iGlowIndex"])
             if team == 3:
-                wgpm(glow_obj, gindex, ct_glow)
+                wgpm(glow_obj, gindex, config["ct_glow"])
             else:
-                wgpm(glow_obj, gindex, t_glow)
+                wgpm(glow_obj, gindex, config["t_glow"])
             csgo.write_uchar(glow_obj + ((gindex * 0x38) + 0x24), 1)
             csgo.write_uchar(glow_obj + ((gindex * 0x38) + 0x25), 0)

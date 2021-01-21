@@ -1,19 +1,8 @@
 import keyboard
 from math import sqrt, asin, atan
 from utils.dll import getPlayer, csgo, client_dll, engine_dll
-from utils.config import aim_fov, aim_key, aim_force_shoot
-from utils.offsets import (
-    dwClientState,
-    m_iTeamNum,
-    dwEntityList,
-    m_iHealth,
-    m_bDormant,
-    m_dwBoneMatrix,
-    dwClientState_ViewAngles,
-    m_vecOrigin,
-    m_vecViewOffset,
-    dwForceAttack,
-)
+from utils.config import config
+from utils.offsets import signatures, netvars
 
 
 def calcangle(localpos1, localpos2, localpos3, enemypos1, enemypos2, enemypos3):
@@ -60,17 +49,17 @@ def calc_distance(current_x, current_y, new_x, new_y):
 
 def aim():
     player = getPlayer()
-    engine_dll_pointer = csgo.read_int(engine_dll + dwClientState)
+    engine_dll_pointer = csgo.read_int(engine_dll + signatures["dwClientState"])
     if player:
-        localTeam = csgo.read_int(player + m_iTeamNum)
+        localTeam = csgo.read_int(player + netvars["m_iTeamNum"])
         olddistx = 111111111111
         olddisty = 111111111111
         for i in range(1, 32):
-            entity = csgo.read_int(client_dll + dwEntityList + i * 0x10)
+            entity = csgo.read_int(client_dll + signatures["dwEntityList"] + i * 0x10)
             if entity:
-                entity_team_id = csgo.read_int(entity + m_iTeamNum)
-                entity_hp = csgo.read_int(entity + m_iHealth)
-                entity_dormant = csgo.read_int(entity + m_bDormant)
+                entity_team_id = csgo.read_int(entity + netvars["m_iTeamNum"])
+                entity_hp = csgo.read_int(entity + netvars["m_iHealth"])
+                entity_dormant = csgo.read_int(entity + signatures["m_bDormant"])
                 target_hp = 0
                 target = None
                 target_dormant = None
@@ -78,18 +67,23 @@ def aim():
                 target_y = 0
                 target_z = 0
                 if localTeam != entity_team_id and entity_hp > 0:
-                    entity_bones = csgo.read_int(entity + m_dwBoneMatrix)
+                    entity_bones = csgo.read_int(entity + netvars["m_dwBoneMatrix"])
                     localpos_x_angles = csgo.read_float(
-                        engine_dll_pointer + dwClientState_ViewAngles
+                        engine_dll_pointer + signatures["dwClientState_ViewAngles"]
                     )
                     localpos_y_angles = csgo.read_float(
-                        engine_dll_pointer + dwClientState_ViewAngles + 0x4
+                        engine_dll_pointer
+                        + signatures["dwClientState_ViewAngles"]
+                        + 0x4
                     )
-                    localpos1 = csgo.read_float(player + m_vecOrigin)
-                    localpos2 = csgo.read_float(player + m_vecOrigin + 4)
-                    localpos_z_angles = csgo.read_float(player + m_vecViewOffset + 0x8)
+                    localpos1 = csgo.read_float(player + netvars["m_vecOrigin"])
+                    localpos2 = csgo.read_float(player + netvars["m_vecOrigin"] + 4)
+                    localpos_z_angles = csgo.read_float(
+                        player + netvars["m_vecViewOffset"] + 0x8
+                    )
                     localpos3 = (
-                        csgo.read_float(player + m_vecOrigin + 8) + localpos_z_angles
+                        csgo.read_float(player + netvars["m_vecOrigin"] + 8)
+                        + localpos_z_angles
                     )
                     try:
                         entitypos_x = csgo.read_float(entity_bones + 0x30 * 8 + 0xC)
@@ -111,8 +105,8 @@ def aim():
                     if (
                         newdist_x < olddistx
                         and newdist_y < olddisty
-                        and newdist_x <= aim_fov
-                        and newdist_y <= aim_fov
+                        and newdist_x <= config["aim_fov"]
+                        and newdist_y <= config["aim_fov"]
                     ):
                         olddistx, olddisty = newdist_x, newdist_y
                         target, target_hp, target_dormant = (
@@ -125,15 +119,17 @@ def aim():
                             entitypos_y,
                             entitypos_z,
                         )
-                    if keyboard.is_pressed(aim_key) and player:
+                    if keyboard.is_pressed(config["aim_key"]) and player:
                         if target and target_hp > 0 and not target_dormant:
-                            localpos1 = csgo.read_float(player + m_vecOrigin)
-                            localpos2 = csgo.read_float(player + m_vecOrigin + 4)
+                            localpos1 = csgo.read_float(player + netvars["m_vecOrigin"])
+                            localpos2 = csgo.read_float(
+                                player + netvars["m_vecOrigin"] + 4
+                            )
                             localpos_z_angles = csgo.read_float(
-                                player + m_vecViewOffset + 0x8
+                                player + netvars["m_vecViewOffset"] + 0x8
                             )
                             localpos3 = (
-                                csgo.read_float(player + m_vecOrigin + 8)
+                                csgo.read_float(player + netvars["m_vecOrigin"] + 8)
                                 + localpos_z_angles
                             )
 
@@ -147,12 +143,17 @@ def aim():
                             )
                             normalize_x, normalize_y = normalizeAngles(pitch, yaw)
                             csgo.write_float(
-                                engine_dll_pointer + dwClientState_ViewAngles,
+                                engine_dll_pointer
+                                + signatures["dwClientState_ViewAngles"],
                                 normalize_x,
                             )
                             csgo.write_float(
-                                engine_dll_pointer + dwClientState_ViewAngles + 0x4,
+                                engine_dll_pointer
+                                + signatures["dwClientState_ViewAngles"]
+                                + 0x4,
                                 normalize_y,
                             )
-                            if aim_force_shoot:
-                                csgo.write_int(client_dll + dwForceAttack, 6)
+                            if config["aim_force_shoot"]:
+                                csgo.write_int(
+                                    client_dll + signatures["dwForceAttack"], 6
+                                )

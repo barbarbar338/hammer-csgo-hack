@@ -1,11 +1,6 @@
 from math import isnan
 from utils.dll import getPlayer, csgo, engine_dll
-from utils.offsets import (
-    m_iShotsFired,
-    dwClientState,
-    dwClientState_ViewAngles,
-    m_aimPunchAngle,
-)
+from utils.offsets import signatures, netvars
 
 
 def nanchecker(first, second):
@@ -32,24 +27,31 @@ def recoil():
     oldpunchx = 0.0
     oldpunchy = 0.0
     player = getPlayer()
-    engine_pointer = csgo.read_int(engine_dll + dwClientState)
+    engine_pointer = csgo.read_int(engine_dll + signatures["dwClientState"])
     if player:
-        if csgo.read_int(player + m_iShotsFired) > 2:
-            rcs_x = csgo.read_float(engine_pointer + dwClientState_ViewAngles)
-            rcs_y = csgo.read_float(engine_pointer + dwClientState_ViewAngles + 0x4)
-            punchx = csgo.read_float(player + m_aimPunchAngle)
-            punchy = csgo.read_float(player + m_aimPunchAngle + 0x4)
+        if csgo.read_int(player + netvars["m_iShotsFired"]) > 2:
+            rcs_x = csgo.read_float(
+                engine_pointer + signatures["dwClientState_ViewAngles"]
+            )
+            rcs_y = csgo.read_float(
+                engine_pointer + signatures["dwClientState_ViewAngles"] + 0x4
+            )
+            punchx = csgo.read_float(player + netvars["m_aimPunchAngle"])
+            punchy = csgo.read_float(player + netvars["m_aimPunchAngle"] + 0x4)
             newrcsx = rcs_x - (punchx - oldpunchx) * 0.02
             newrcsy = rcs_y - (punchy - oldpunchy) * 0.02
             oldpunchx = punchx
             oldpunchy = punchy
             if nanchecker(newrcsx, newrcsy) and checkangles(newrcsx, newrcsy):
-                csgo.write_float(engine_pointer + dwClientState_ViewAngles, newrcsx)
                 csgo.write_float(
-                    engine_pointer + dwClientState_ViewAngles + 0x4, newrcsy
+                    engine_pointer + signatures["dwClientState_ViewAngles"], newrcsx
+                )
+                csgo.write_float(
+                    engine_pointer + signatures["dwClientState_ViewAngles"] + 0x4,
+                    newrcsy,
                 )
         else:
-            oldpunchx = csgo.read_float(player + m_aimPunchAngle)
-            oldpunchy = csgo.read_float(player + m_aimPunchAngle + 0x4)
+            oldpunchx = csgo.read_float(player + netvars["m_aimPunchAngle"])
+            oldpunchy = csgo.read_float(player + netvars["m_aimPunchAngle"] + 0x4)
             newrcsx = oldpunchx
             newrcsy = oldpunchy

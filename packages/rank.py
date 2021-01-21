@@ -1,15 +1,7 @@
 import keyboard
-from utils.dll import csgo, client_dll, engine_dll
-from utils.offsets import (
-    dwEntityList,
-    m_iTeamNum,
-    dwLocalPlayer,
-    dwClientState,
-    dwClientState_PlayerInfo,
-    dwPlayerResource,
-    m_iCompetitiveRanking,
-)
-from utils.config import rank_checker_key
+from utils.dll import csgo, client_dll, engine_dll, getPlayer
+from utils.offsets import netvars, signatures
+from utils.config import config
 
 
 def rank():
@@ -34,17 +26,17 @@ def rank():
         "Supreme Master First Class",
         "The Global Elite",
     ]
-    if keyboard.is_pressed(rank_checker_key):
+    if keyboard.is_pressed(config["rank_checker_key"]):
         for i in range(1, 32):
-            entity = csgo.read_int(client_dll + dwEntityList + i * 0x10)
+            entity = csgo.read_int(client_dll + signatures["dwEntityList"] + i * 0x10)
 
             if entity:
-                entity_team_id = csgo.read_int(entity + m_iTeamNum)
-                entity_i = csgo.read_int(client_dll + dwLocalPlayer)
-                if entity_team_id != csgo.read_int(entity_i + m_iTeamNum):
+                entity_team_id = csgo.read_int(entity + netvars["m_iTeamNum"])
+                entity_i = getPlayer()
+                if entity_team_id != csgo.read_int(entity_i + netvars["m_iTeamNum"]):
                     player_info = csgo.read_int(
-                        (csgo.read_int(engine_dll + dwClientState))
-                        + dwClientState_PlayerInfo
+                        (csgo.read_int(engine_dll + signatures["dwClientState"]))
+                        + signatures["dwClientState_PlayerInfo"]
                     )
                     player_info_items = csgo.read_int(
                         csgo.read_int(player_info + 0x40) + 0xC
@@ -52,6 +44,10 @@ def rank():
                     info = csgo.read_int(player_info_items + 0x28 + (i * 0x34))
                     name = csgo.read_string(info + 0x10)
                     if name != "GOTV":
-                        playerres = csgo.read_int(client_dll + dwPlayerResource)
-                        rank = csgo.read_int(playerres + m_iCompetitiveRanking + i * 4)
+                        playerres = csgo.read_int(
+                            client_dll + signatures["dwPlayerResource"]
+                        )
+                        rank = csgo.read_int(
+                            playerres + netvars["m_iCompetitiveRanking"] + i * 4
+                        )
                         print(name + "   -->   " + ranks[rank])

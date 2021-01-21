@@ -1,6 +1,6 @@
 import pymem
 import pymem.process
-from utils.offsets import dwLocalPlayer
+from utils.offsets import signatures
 
 csgo = pymem.Pymem("csgo.exe")
 
@@ -10,7 +10,7 @@ def readDll(name):
 
 
 def getPlayer():
-    return csgo.read_int(client_dll + dwLocalPlayer)
+    return csgo.read_int(client_dll + signatures["dwLocalPlayer"])
 
 
 client_dll = readDll("client.dll")

@@ -1,5 +1,5 @@
 import sys
-import utils.config as config
+from utils.config import config
 from utils.banner import printBanner
 from utils.check import check, checkIfValid
 from packages.aim import aim
@@ -23,23 +23,23 @@ def main():
             print("Your license is expired. Please upgrade your license.")
             input("Press Enter to exit.")
             sys.exit()
-        if config.aimlock:
+        if config["aimlock"]:
             aim()
-        if config.bhop:
+        if config["bhop"]:
             bunny()
-        if config.glow:
+        if config["glow"]:
             glow()
-        if config.noflash:
+        if config["noflash"]:
             noflash()
-        if config.radar:
+        if config["radar"]:
             radar()
-        if config.trigger:
+        if config["trigger"]:
             trigger()
-        if config.recoil:
+        if config["recoil"]:
             recoil()
-        if config.fov:
+        if config["fov"]:
             fov()
-        if config.charm:
+        if config["charm"]:
             charm()
         rank()
 
