@@ -47,5 +47,4 @@ trigger_key: shift # trigger bot key
 
 recoil: true # turns on recoil helper false for turn off
 
-rank_checker: true # turns on rank checker false for turn off
 rank_checker_key: f6 # rank checker key

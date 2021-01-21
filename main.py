@@ -41,8 +41,7 @@ def main():
             fov()
         if config.charm:
             charm()
-        if config.rank_checker:
-            rank()
+        rank()
 
 
 if __name__ == "__main__":

@@ -20,7 +20,6 @@ def printHacks():
                 ["Trigger Bot", str(trigger)],
                 ["Recoil Helper", str(recoil)],
                 ["FOV", str(fov)],
-                ["Rank Checker", str(rank_checker)],
             ],
             headers=["Hack", "Is Active"],
             tablefmt="orgtbl",

@@ -28,5 +28,4 @@ with open("config.yaml") as file:
     fov = config["fov"]
     ct_charm = config["ct_charm"]
     t_charm = config["t_charm"]
-    rank_checker = config["rank_checker"]
     rank_checker_key = config["rank_checker_key"]
