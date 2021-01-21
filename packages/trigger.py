@@ -7,7 +7,10 @@ from utils.offsets import netvars, signatures
 
 def trigger():
     player = getPlayer()
-    if player and keyboard.is_pressed(config["trigger_key"]):
+    if player and (
+        keyboard.is_pressed(config["trigger_key"])
+        or (config["aim_force_shoot"] and keyboard.is_pressed(config["aim_key"]))
+    ):
         entity_id = csgo.read_int(player + netvars["m_iCrosshairId"])
         entity = csgo.read_int(
             client_dll + signatures["dwEntityList"] + (entity_id - 1) * 0x10
