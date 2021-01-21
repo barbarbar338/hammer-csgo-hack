@@ -7,9 +7,9 @@
 #   The configurations currently written in this file are recommended. You can make changes according to your request.
 
 aimlock: true # turns on aimlock false for turn off
-aim_key: ctrl # aimlock key 
-aim_fov: 5 # aimlock fov (recommended: 5) 
-aim_force_shoot: true # aimlock force shoot
+aim_key: alt # aimlock key (recommended: alt)
+aim_fov: 3 # aimlock fov (recommended: 5) 
+aim_force_shoot: true # aimlock force shoot false for turn off
 
 bhop: true # turns on bunny hop false for turn off
 bunny_key: space # bunny hop key
