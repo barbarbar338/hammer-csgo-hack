@@ -3,6 +3,7 @@ from math import sqrt, asin, atan
 from utils.dll import getPlayer, csgo, client_dll, engine_dll
 from utils.config import config
 from utils.offsets import signatures, netvars
+from packages.trigger import trigger
 
 
 def calcangle(localpos1, localpos2, localpos3, enemypos1, enemypos2, enemypos3):
@@ -154,6 +155,4 @@ def aim():
                                 normalize_y,
                             )
                             if config["aim_force_shoot"]:
-                                csgo.write_int(
-                                    client_dll + signatures["dwForceAttack"], 6
-                                )
+                                trigger()
