@@ -38,6 +38,7 @@ def printConfig():
                 ["Aim Lock Key", str(config["aim_key"])],
                 ["Aim Lock FOV", str(config["aim_fov"])],
                 ["Aim Lock Force Shoot", str(config["aim_force_shoot"])],
+                ["Aim Lock Type", str(config["aim_type"])],
                 ["FOV", str(config["default_fov"])],
                 ["Glow CT Colors", str(config["ct_glow"])],
                 ["Glow T Colors", str(config["t_glow"])],

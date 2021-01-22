@@ -6,15 +6,16 @@
 #
 #   The configurations currently written in this file are recommended. You can make changes according to your request.
 
-aimlock: true # turns on aimlock false for turn off
+aimlock: true # turns on aimlock
 aim_key: ctrl # aimlock key 
-aim_fov: 5 # aimlock fov (recommended: 5) 
-aim_force_shoot: true # aimlock force shoot
+aim_fov: 3 # aimlock fov (recommended: 3) 
+aim_force_shoot: false # aimlock force shoot
+aim_type: legit # Where to aim (values: body, random, legit, head - recommended: legit)
 
-bhop: true # turns on bunny hop false for turn off
+bhop: true # turns on bunny hop
 bunny_key: space # bunny hop key
 
-glow: true # turns on glow hack false for turn off
+glow: true # turns on glow hack
 ct_glow: # glow hack ct colors
     red: 0.0
     green: 0.0
@@ -26,7 +27,7 @@ t_glow: # glow hack t colors
     blue: 0.0 
     opacity: 2.0
 
-charm: true # turns on charm hack false for turn off
+charm: true # turns on charm hack
 ct_charm: # charm hack ct colors
     red: 0
     green: 255 # ct color is green (recommended)
@@ -36,15 +37,15 @@ t_charm: # charm hack t colors
     green: 255 # t color is green (recommended)
     blue: 30
 
-fov: true # turns on fov hack false for turn off
+fov: true # turns on fov hack
 default_fov: 120 # default fov (recommended: 120, default: 90)
-noflash: true # disables flash bombs false for turn off
-radar: true # shows enemies in radar false for turn off
+noflash: true # disables flash bombs
+radar: true # shows enemies in radar
 
-trigger: true # turns on trigger  bot false for turn off
+trigger: true # turns on trigger  bot
 trigger_delay: 0.1 # trigger bot delay
 trigger_key: shift # trigger bot key
 
-recoil: true # turns on recoil helper false for turn off
+recoil: true # turns on recoil helper
 
 rank_checker_key: f6 # rank checker key
