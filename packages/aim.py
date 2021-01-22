@@ -196,7 +196,9 @@ def aim():
                                     target_z,
                                 )
                                 if nanchecker(pitch, yaw):
-                                    normalize_x, normalize_y = normalizeAngles(pitch, yaw)
+                                    normalize_x, normalize_y = normalizeAngles(
+                                        pitch, yaw
+                                    )
                                     csgo.write_float(
                                         engine_dll_pointer
                                         + signatures["dwClientState_ViewAngles"],
