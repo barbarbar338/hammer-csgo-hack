@@ -1,21 +1,25 @@
 import keyboard
-from random import randrange, uniform
-from math import sqrt, isnan, asin, atan
+from random import randint
+from math import sqrt, atan, pi, isnan
 from utils.dll import getPlayer, csgo, client_dll, engine_dll
 from utils.config import config
 from utils.offsets import signatures, netvars
 
 
 def calcangle(localpos1, localpos2, localpos3, enemypos1, enemypos2, enemypos3):
-    delta_x = localpos1 - enemypos1
-    delta_y = localpos2 - enemypos2
-    delta_z = localpos3 - enemypos3
-    hyp = sqrt(delta_x * delta_x + delta_y * delta_y + delta_z * delta_z)
-    x = asin(delta_z / hyp) * 57.295779513082
-    y = atan(delta_y / delta_x) * 57.295779513082
-    if delta_x >= 0.0:
-        y += 180.0
-    return x, y
+    try:
+        delta_x = localpos1 - enemypos1
+        delta_y = localpos2 - enemypos2
+        delta_z = localpos3 - enemypos3
+        hyp = sqrt(delta_x * delta_x + delta_y * delta_y + delta_z * delta_z)
+        x = atan(delta_z / hyp) * 180 / pi
+        y = atan(delta_y / delta_x) * 180 / pi
+        if delta_x >= 0.0:
+            y += 180.0
+        return x, y
+    except Exception as e:
+        print(e)
+        pass
 
 
 def normalizeAngles(viewAngleX, viewAngleY):
@@ -38,6 +42,7 @@ def calc_distance(current_x, current_y, new_x, new_y):
         distancex -= 360
     if distancex < 0.0:
         distancex = -distancex
+
     distancey = new_y - current_y
     if distancey < -180:
         distancey += 360
@@ -106,7 +111,7 @@ def aim():
                             continue
                     elif config["aim_type"] == "random":
                         try:
-                            random_value = randrange(2, 10)
+                            random_value = randint(3, 9)
                             entitypos_x = csgo.read_float(
                                 entity_bones + 0x30 * random_value + 0xC
                             )
@@ -120,7 +125,7 @@ def aim():
                             continue
                     elif config["aim_type"] == "legit":
                         try:
-                            legit_range = randrange(3, 10)
+                            legit_range = randint(4, 8)
                             entitypos_x = csgo.read_float(
                                 entity_bones + 0x30 * legit_range + 0xC
                             )
@@ -136,7 +141,7 @@ def aim():
                         try:
                             entitypos_x = csgo.read_float(entity_bones + 0x30 * 8 + 0xC)
                             entitypos_y = csgo.read_float(
-                                entity_bones + 0x30 * 8 + 0x1C
+                                entity_bones + 0x30 * 5 + 0x1C
                             )
                             entitypos_z = csgo.read_float(
                                 entity_bones + 0x30 * 8 + 0x2C
@@ -199,14 +204,119 @@ def aim():
                                     normalize_x, normalize_y = normalizeAngles(
                                         pitch, yaw
                                     )
-                                    csgo.write_float(
-                                        engine_dll_pointer
-                                        + signatures["dwClientState_ViewAngles"],
-                                        normalize_x,
+                                    punchx = csgo.read_float(
+                                        player + netvars["m_aimPunchAngle"]
                                     )
-                                    csgo.write_float(
-                                        engine_dll_pointer
-                                        + signatures["dwClientState_ViewAngles"]
-                                        + 0x4,
-                                        normalize_y,
+                                    punchy = csgo.read_float(
+                                        player + netvars["m_aimPunchAngle"] + 0x4
                                     )
+                                    Commands = csgo.read_int(
+                                        client_dll + signatures["dwInput"] + 0xF4
+                                    )
+                                    VerifedCommands = csgo.read_int(
+                                        client_dll + signatures["dwInput"] + 0xF8
+                                    )
+                                    Desired = (
+                                        csgo.read_int(
+                                            engine_dll_pointer
+                                            + signatures[
+                                                "clientstate_last_outgoing_command"
+                                            ]
+                                        )
+                                        + 2
+                                    )
+                                    OldUser = Commands + ((Desired - 1) % 150) * 100
+                                    VerifedOldUser = (
+                                        VerifedCommands + ((Desired - 1) % 150) * 0x68
+                                    )
+                                    m_buttons = csgo.read_int(OldUser + 0x30)
+                                    Net_Channel = csgo.read_uint(
+                                        engine_dll_pointer
+                                        + signatures["clientstate_net_channel"]
+                                    )
+                                    if config["aim_lock_type"] == "silent":
+                                        csgo.write_uchar(
+                                            engine_dll + signatures["dwbSendPackets"], 0
+                                        )
+                                        if csgo.read_int(Net_Channel + 0x18) >= Desired:
+                                            csgo.write_float(
+                                                OldUser + 0x0C, normalize_x
+                                            )
+                                            csgo.write_float(
+                                                OldUser + 0x10, normalize_y
+                                            )
+                                            csgo.write_int(
+                                                OldUser + 0x30, m_buttons | (1 << 0)
+                                            )
+                                            csgo.write_float(
+                                                VerifedOldUser + 0x0C,
+                                                normalize_x,
+                                            )
+                                            csgo.write_float(
+                                                VerifedOldUser + 0x10,
+                                                normalize_y,
+                                            )
+                                            csgo.write_int(
+                                                VerifedOldUser + 0x30,
+                                                m_buttons | (1 << 0),
+                                            )
+                                            csgo.write_uchar(
+                                                engine_dll
+                                                + signatures["dwbSendPackets"],
+                                                1,
+                                            )
+                                        else:
+                                            csgo.write_uchar(
+                                                engine_dll
+                                                + signatures["dwbSendPackets"],
+                                                1,
+                                            )
+                                    elif config["aim_lock_type"] == "silentrcs":
+                                        csgo.write_uchar(
+                                            engine_dll + signatures["dwbSendPackets"], 0
+                                        )
+                                        if csgo.read_int(Net_Channel + 0x18) >= Desired:
+                                            csgo.write_float(
+                                                OldUser + 0x0C, normalize_x
+                                            )
+                                            csgo.write_float(
+                                                OldUser + 0x10, normalize_y
+                                            )
+                                            csgo.write_int(
+                                                OldUser + 0x30, m_buttons | (1 << 0)
+                                            )
+                                            csgo.write_float(
+                                                VerifedOldUser + 0x0C,
+                                                normalize_x - (punchx * 2),
+                                            )
+                                            csgo.write_float(
+                                                VerifedOldUser + 0x10,
+                                                normalize_y - (punchy * 2),
+                                            )
+                                            csgo.write_int(
+                                                VerifedOldUser + 0x30,
+                                                m_buttons | (1 << 0),
+                                            )
+                                            csgo.write_uchar(
+                                                engine_dll
+                                                + signatures["dwbSendPackets"],
+                                                1,
+                                            )
+                                        else:
+                                            csgo.write_uchar(
+                                                engine_dll
+                                                + signatures["dwbSendPackets"],
+                                                1,
+                                            )
+                                    else:
+                                        csgo.write_float(
+                                            engine_dll_pointer
+                                            + signatures["dwClientState_ViewAngles"],
+                                            normalize_x,
+                                        )
+                                        csgo.write_float(
+                                            engine_dll_pointer
+                                            + signatures["dwClientState_ViewAngles"]
+                                            + 0x4,
+                                            normalize_y,
+                                        )

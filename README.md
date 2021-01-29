@@ -5,6 +5,7 @@ You can download executable from [here](https://github.com/barbarbar338/hammer-c
 
 # ✨ Features
 - 🎯 Aim Lock
+- 🔈 Silent Aim
 - 🐇 Bunny Hop
 - 🌠 Glow Hack
 - 🎆 Charm Hack
