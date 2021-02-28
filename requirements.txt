@@ -1,7 +1,0 @@
-black
-keyboard
-pyinstaller
-pymem
-pyyaml
-requests
-tabulate
