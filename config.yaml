@@ -7,11 +7,19 @@
 #   The configurations currently written in this file are recommended. You can make changes according to your request.
 
 aimlock: true # turns on aimlock
+<<<<<<< Updated upstream
 aim_key: ctrl # aimlock key 
-aim_fov: 10 # aimlock fov (recommended: 10) 
+aim_fov: 3 # aimlock fov (recommended: 3) 
 aim_force_shoot: false # aimlock force shoot
 aim_type: head # Where to aim (values: body, random, legit, head - recommended: head)
 aim_lock_type: silent # Aim lock type (values: silent, silentrcs, lock - recommended: silent)
+=======
+aim_key: ctrl # aimlock key 
+aim_fov: 3 # aimlock fov (recommended: 3) 
+aim_force_shoot: false # aimlock force shoot
+aim_type: head # Where to aim (values: body, random, legit, head - recommended: head)
+aim_lock_type: silent # Aim lock type (values: silent, silentrcs, lock - recommended: silent)
+>>>>>>> Stashed changes
 
 bhop: true # turns on bunny hop
 bunny_key: space # bunny hop key
