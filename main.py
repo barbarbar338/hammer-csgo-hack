@@ -12,10 +12,11 @@ from packages.fov import fov
 from packages.recoil import recoil
 from packages.charm import charm
 from packages.rank import rank
+from packages.skinchanger import change_skin
 
 
 def main():
-    #check() API is offline
+    check()
     printBanner()
     while True:
         isValid = checkIfValid()
@@ -42,6 +43,7 @@ def main():
         if config["charm"]:
             charm()
         rank()
+        #change_skin()
 
 
 if __name__ == "__main__":
