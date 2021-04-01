@@ -7,7 +7,7 @@ from format import format
 def build():
     prebuild()
     format()
-    print("🏗 Building")
+    print("🚧 Building")
     subprocess.call(
         [
             "pyinstaller",
@@ -19,7 +19,7 @@ def build():
         ]
     )
     shutil.copy("config.yaml", "dist")
-    print("✔ Build successfull")
+    print("🎈 Build successfull")
 
 
 if __name__ == "__main__":

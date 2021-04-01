@@ -15,7 +15,7 @@ from packages.rank import rank
 
 
 def main():
-    #check() API is offline
+    check()
     printBanner()
     while True:
         isValid = checkIfValid()
