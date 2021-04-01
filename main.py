@@ -43,7 +43,7 @@ def main():
         if config["charm"]:
             charm()
         rank()
-        #change_skin()
+        change_skin()
 
 
 if __name__ == "__main__":

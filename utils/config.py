@@ -8,3 +8,9 @@ endDate = datetime(2050, 1, 15, 15, 30).timestamp()
 
 with open("config.yaml") as file:
     config = yaml.safe_load(file)
+
+skins = []
+with open("skins.txt", "r", encoding="utf-8") as f:
+    for line in f.readlines():
+        skin = line.split("=")[-1].strip()
+        skins.append(int(skin))

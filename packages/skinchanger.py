@@ -1,38 +1,24 @@
 import time
 import ctypes
-import requests
+from utils.config import skins
 import keyboard
 from utils.dll import csgo, client_dll, engine_dll, getPlayer
 from utils.offsets import netvars, signatures
 
 user32 = ctypes.windll.user32
 
-pm = pymem.Pymem( "csgo.exe" )
-client = pymem.process.module_from_name(pm.process_handle, "client.dll").lpBaseOfDll
-engine = pymem.process.module_from_name(pm.process_handle, "engine.dll").lpBaseOfDll
 
 def GetWindowText(handle, length=100):
-
     window_text = ctypes.create_string_buffer(length)
-    user32.GetWindowTextA(
-        handle,
-        ctypes.byref(window_text),
-        length
-    )
-
-    return window_text.value.decode('cp1252')
+    user32.GetWindowTextA(handle, ctypes.byref(window_text), length)
+    return window_text.value.decode("cp1252")
 
 
 def GetForegroundWindow():
-
     return user32.GetForegroundWindow()
 
+
 def change_skin():
-    skins = []
-    with open("skins.txt", "r", encoding='utf-8') as f:
-        for line in f.readlines():
-            skin = line.split("=")[-1].strip()
-            skins.append(int(skin))
     akpaint = skins[0]
     awppaint = skins[1]
     usppaint = skins[2]
@@ -58,20 +44,32 @@ def change_skin():
     novpaint = skins[22]
     sawpaint = skins[23]
     xmpaint = skins[24]
-    engine_state = pm.read_int( engine + dwClientState )
+    engine_dll_state = csgo.read_int(engine_dll + signatures["dwClientState"])
     while True:
-        if not GetWindowText( GetForegroundWindow() ) == "Counter-Strike: Global Offensive":
-            time.sleep( 1 )
+        if (
+            not GetWindowText(GetForegroundWindow())
+            == "Counter-Strike: Global Offensive"
+        ):
+            time.sleep(1)
             continue
-        local_player = pm.read_int( client + dwLocalPlayer )
+        local_player = getPlayer()
         if local_player == 0:
             continue
-        for i in range( 0, 8 ):
-            my_weapons = pm.read_int( local_player + m_hMyWeapons + (i - 1) * 0x4 ) & 0xFFF
-            weapon_address = pm.read_int( client + dwEntityList + (my_weapons - 1) * 0x10 )
+        for i in range(0, 8):
+            my_weapons = (
+                csgo.read_int(local_player + netvars["m_hMyWeapons"] + (i - 1) * 0x4)
+                & 0xFFF
+            )
+            weapon_address = csgo.read_int(
+                client_dll + signatures["dwEntityList"] + (my_weapons - 1) * 0x10
+            )
             if weapon_address:
-                weapon_id = pm.read_int( weapon_address + m_iItemDefinitionIndex )
-                weapon_owner = pm.read_int( weapon_address + m_OriginalOwnerXuidLow )
+                weapon_id = csgo.read_int(
+                    weapon_address + netvars["m_iItemDefinitionIndex"]
+                )
+                weapon_owner = csgo.read_int(
+                    weapon_address + netvars["m_OriginalOwnerXuidLow"]
+                )
                 seed = 420
                 if weapon_id == 7:
                     fallbackpaint = akpaint
@@ -133,12 +131,16 @@ def change_skin():
                     fallbackpaint = xmpaint
                 else:
                     continue
-                pm.write_int( weapon_address + m_iItemIDHigh, -1 )
-                pm.write_int( weapon_address + m_nFallbackPaintKit, fallbackpaint )
-                pm.write_int( weapon_address + m_iAccountID, weapon_owner )
-                pm.write_int( weapon_address + m_nFallbackStatTrak, 187 )
-                pm.write_int( weapon_address + m_nFallbackSeed, seed )
-                pm.write_float( weapon_address + m_flFallbackWear, float( 0.000001 ) )
+                csgo.write_int(weapon_address + netvars["m_iItemIDHigh"], -1)
+                csgo.write_int(
+                    weapon_address + netvars["m_nFallbackPaintKit"], fallbackpaint
+                )
+                csgo.write_int(weapon_address + netvars["m_iAccountID"], weapon_owner)
+                csgo.write_int(weapon_address + netvars["m_nFallbackStatTrak"], 187)
+                csgo.write_int(weapon_address + netvars["m_nFallbackSeed"], seed)
+                csgo.write_float(
+                    weapon_address + netvars["m_flFallbackWear"], float(0.000001)
+                )
 
-        if keyboard.is_pressed( "f7" ):
-            pm.write_int( engine_state + 0x174, -1 )
+        if keyboard.is_pressed("f7"):
+            csgo.write_int(engine_dll_state + 0x174, -1)

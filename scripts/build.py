@@ -19,6 +19,7 @@ def build():
         ]
     )
     shutil.copy("config.yaml", "dist")
+    shutil.copy("skins.txt", "dist")
     print("🎈 Build successfull")
 
 
