@@ -24,6 +24,9 @@ You can download executable from [here](https://github.com/barbarbar338/hammer-c
 - Run CS:GO
 - Run `hammer.exe`
 
+# 🔧 Known Bugs
+- When the Skin Changer is on, other hacks not working.
+
 # 🛑 VAC
 I have been using the cheat aggressively since 10.01.2021 and I haven't had a VAC ban yet. However, my friend showed more than me and get reports of about 10 people at the same time and he was banned. As you can see, the CS:GO cheat protection system is quite simple but brutal. Nevertheless, use it at the risk of VAC banning. I do not accept any liability if you are VAC banned. Use at your own risk.
 
