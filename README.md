@@ -16,11 +16,11 @@ You can download executable from [here](https://github.com/barbarbar338/hammer-c
 - 🥽 FOV
 - 🐱‍👤 Anti Recoil
 - 🏆 Rank Revealer
-- 🎀 Skin changer
+- 🎀 Skin changer (For some reason skin changer is not working, will be fixed soon!)
 
 # 🎈 Starting Hacks
 - Edit `config.yaml` (The settings it contains are recommended settings.)
-- Edit `skins.txt`
+- Edit `skins.txt` (For some reason skin changer is not working)
 - Run CS:GO
 - Run `hammer.exe`
 
