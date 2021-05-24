@@ -1,3 +1,7 @@
+"""
+WIP, do not use.
+"""
+
 import time
 import ctypes
 from utils.config import skins
@@ -144,6 +148,7 @@ def change_skin():
 
         if keyboard.is_pressed("o"):
             csgo.write_int(engine_dll_state + 0x174, -1)
+
 
 if __name__ == "__main__":
     change_skin()
