@@ -7,11 +7,11 @@
 #   The configurations currently written in this file are recommended. You can make changes according to your request.
 
 aimlock: true # turns on aimlock
-aim_key: ctrl # aimlock key 
-aim_fov: 3 # aimlock fov (recommended: 3) 
+aim_key: ctrl # aimlock key
+aim_fov: 3 # aimlock fov (recommended: 3)
 aim_force_shoot: false # aimlock force shoot
 aim_type: head # Where to aim (values: body, random, legit, head - recommended: head)
-aim_lock_type: silent # Aim lock type (values: silent, silentrcs, lock - recommended: silent)
+aim_lock_type: lock # Aim lock type (values: silent, silentrcs, lock - recommended: silent)
 
 bhop: true # turns on bunny hop
 bunny_key: space # bunny hop key
@@ -25,7 +25,7 @@ ct_glow: # glow hack ct colors
 t_glow: # glow hack t colors
     red: 2.0 # t color is red (recommended)
     green: 0.0
-    blue: 0.0 
+    blue: 0.0
     opacity: 2.0
 
 charm: true # turns on charm hack
