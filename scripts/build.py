@@ -18,7 +18,9 @@ def build():
             "main.py",
         ]
     )
+    print("📌 copying config.yaml to output")
     shutil.copy("config.yaml", "dist")
+    print("📌 copying skins.txt to output")
     shutil.copy("skins.txt", "dist")
     print("🎈 Build successfull")
 
