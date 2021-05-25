@@ -22,7 +22,7 @@ def checkLicense():
 
 def checkUpdates():
     print("Checking updates...")
-    data = requests.get("https://api.bariscodes.me/check").json()
+    data = requests.get("https://pinkie-api.fly.dev/check").json()
     if data["version"] != version or data["latestKey"] != latestKey:
         latestVersion = data["version"]
         print(
