@@ -1,9 +1,10 @@
 # 🔥 Hammer CS:GO Hacks
 
 <img src="https://flat.badgen.net/badge/VAC/Undetected./green?icon=terminal">
-A few CS:GO hacks made with the classic "write memory" logic. Most of its features are adjustable and will be constantly updated.
 
-You can download executable from [here](https://github.com/barbarbar338/hammer-csgo-hack/releases).
+- A few CS:GO hacks made with the classic "write memory" logic. Most of its features are adjustable and will be constantly updated.
+- **Educational purposes only! Do not use it in competitive game modes.**
+- You can download executable from [here](https://github.com/barbarbar338/hammer-csgo-hack/releases).
 
 # ✨ Features
 
