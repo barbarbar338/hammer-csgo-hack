@@ -1,5 +1,5 @@
-import yaml
 import requests
+import yaml
 
 response = requests.get(
     "https://raw.githubusercontent.com/frk1/hazedumper/master/csgo.yaml"

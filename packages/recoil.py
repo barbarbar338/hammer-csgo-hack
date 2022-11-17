@@ -1,6 +1,7 @@
 from math import isnan
-from utils.dll import getPlayer, csgo, engine_dll
-from utils.offsets import signatures, netvars
+
+from utils.dll import csgo, engine_dll, getPlayer
+from utils.offsets import netvars, signatures
 
 
 def nanchecker(first, second):

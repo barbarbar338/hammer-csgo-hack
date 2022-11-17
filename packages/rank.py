@@ -1,7 +1,8 @@
 import keyboard
-from utils.dll import csgo, client_dll, engine_dll, getPlayer
-from utils.offsets import netvars, signatures
+
 from utils.config import config
+from utils.dll import client_dll, csgo, engine_dll, getPlayer
+from utils.offsets import netvars, signatures
 
 
 def rank():

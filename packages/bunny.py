@@ -1,7 +1,8 @@
 import keyboard
-from utils.dll import getPlayer, csgo, client_dll
-from utils.offsets import signatures, netvars
+
 from utils.config import config
+from utils.dll import client_dll, csgo, getPlayer
+from utils.offsets import netvars, signatures
 
 
 def bunny():

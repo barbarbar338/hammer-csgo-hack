@@ -1,9 +1,11 @@
-import keyboard
+from math import atan, isnan, pi, sqrt
 from random import randint
-from math import sqrt, atan, pi, isnan
-from utils.dll import getPlayer, csgo, client_dll, engine_dll
+
+import keyboard
+
 from utils.config import config
-from utils.offsets import signatures, netvars
+from utils.dll import client_dll, csgo, engine_dll, getPlayer
+from utils.offsets import netvars, signatures
 
 
 def calcangle(localpos1, localpos2, localpos3, enemypos1, enemypos2, enemypos3):
@@ -61,8 +63,8 @@ def nanchecker(first, second):
 
 
 def aim():
-    player = getPlayer()
     engine_dll_pointer = csgo.read_int(engine_dll + signatures["dwClientState"])
+    player = getPlayer()
     if player:
         localTeam = csgo.read_int(player + netvars["m_iTeamNum"])
         olddistx = 111111111111
@@ -191,7 +193,6 @@ def aim():
                                     csgo.read_float(player + netvars["m_vecOrigin"] + 8)
                                     + localpos_z_angles
                                 )
-
                                 pitch, yaw = calcangle(
                                     localpos1,
                                     localpos2,

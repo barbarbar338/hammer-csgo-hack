@@ -1,5 +1,6 @@
 import pymem
 import pymem.process
+
 from utils.offsets import signatures
 
 csgo = pymem.Pymem("csgo.exe")

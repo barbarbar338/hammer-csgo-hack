@@ -1,7 +1,9 @@
-import keyboard
 import time
-from utils.dll import getPlayer, csgo, client_dll
+
+import keyboard
+
 from utils.config import config
+from utils.dll import client_dll, csgo, getPlayer
 from utils.offsets import netvars, signatures
 
 

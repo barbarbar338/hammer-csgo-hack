@@ -1,13 +1,15 @@
 from tabulate import tabulate
+
 from utils.config import config, version
 
 
 def printAuthor():
-    print(f"\nHammer CS:GO Hack v{version}\n- by barbarbar338\n")
+    print(f"\nHammer CS:GO Hack v{version}\n- By Hammer Team\n")
 
 
 def printHacks():
     print("\nHacks\n")
+
     print(
         tabulate(
             [
@@ -29,6 +31,7 @@ def printHacks():
 
 def printConfig():
     print("\nConfigurations\n")
+
     print(
         tabulate(
             [

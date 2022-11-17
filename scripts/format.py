@@ -3,6 +3,7 @@ import subprocess
 
 def format():
     print("🎀 Formatting files")
+
     subprocess.call(["python", "-m" "black", "."])
 
 

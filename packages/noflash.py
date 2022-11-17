@@ -1,4 +1,4 @@
-from utils.dll import getPlayer, csgo
+from utils.dll import csgo, getPlayer
 from utils.offsets import netvars
 
 

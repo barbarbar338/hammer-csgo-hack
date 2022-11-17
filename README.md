@@ -19,7 +19,6 @@
 -   🥽 FOV
 -   🐱‍👤 Anti Recoil
 -   🏆 Rank Revealer
--   🎀 Skin changer (For some reason skin changer is not working, will be fixed soon!)
 
 # 🎈 Starting Hacks
 
@@ -30,7 +29,7 @@
 
 # 🔧 Known Bugs
 
--   When the Skin Changer is on, other hacks not working.
+- empty
 
 # 🛑 VAC
 

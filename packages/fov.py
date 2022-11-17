@@ -1,6 +1,6 @@
-from utils.dll import getPlayer, csgo
-from utils.offsets import netvars
 from utils.config import config
+from utils.dll import csgo, getPlayer
+from utils.offsets import netvars
 
 
 def fov():

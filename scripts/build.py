@@ -1,13 +1,17 @@
-import subprocess
 import shutil
-from prebuild import prebuild
+import subprocess
+
 from format import format
+from prebuild import prebuild
 
 
 def build():
     prebuild()
+
     format()
+
     print("🚧 Building")
+
     subprocess.call(
         [
             "pyinstaller",
@@ -18,10 +22,10 @@ def build():
             "main.py",
         ]
     )
+
     print("📌 copying config.yaml to output")
     shutil.copy("config.yaml", "dist")
-    print("📌 copying skins.txt to output")
-    shutil.copy("skins.txt", "dist")
+
     print("🎈 Build successfull")
 
 

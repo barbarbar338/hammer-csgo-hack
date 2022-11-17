@@ -1,5 +1,5 @@
-from utils.dll import csgo, client_dll
-from utils.offsets import signatures, netvars
+from utils.dll import client_dll, csgo
+from utils.offsets import netvars, signatures
 
 
 def radar():
