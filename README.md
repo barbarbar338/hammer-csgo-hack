@@ -1,4 +1,4 @@
-> I do not intent to update this project anymore. I will not accept any PRs. If you want to continue this project, you can fork it. No support will be provided for running or updating this project. Even though there is not any visible damages caused by this project, I will not be responsible for any damage caused by this project. Use at your own risk.
+> I do not intend to update this project anymore. I will not accept any PRs. If you want to continue this project, you can fork it. No support will be provided for running or updating this project. Even though there is not any visible damages caused by this project, I will not be responsible for any damage caused by this project. Use at your own risk.
 >
 > ~barbarbar338
 
