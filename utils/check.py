@@ -6,6 +6,7 @@ import requests
 from utils.config import currentHash, endDate, latestKey, version
 
 
+# Simple license check, you can create your own license check system
 def checkIfValid():
     now = datetime.now().timestamp()
     remaining = endDate - now
@@ -27,7 +28,9 @@ def checkLicense():
 def checkUpdates():
     print("Checking updates...")
 
-    data = requests.get("https://pinkie-api.fly.dev/check").json()
+    data = requests.get(
+        "https://pinkie-api.fly.dev/check"
+    ).json()  # API deprecated, create your own version check api
     if data["version"] != version or data["latestKey"] != latestKey:
         latestVersion = data["version"]
 
